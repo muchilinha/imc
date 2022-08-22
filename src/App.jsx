@@ -22,6 +22,8 @@ class Imc extends React.Component {
     this.state = {
       peso: null,
       altura: null
+        masculino: true or false
+        maior: true or false
     };
   }
 
@@ -31,6 +33,14 @@ class Imc extends React.Component {
 
   setAltura(event) {
     this.setState({ altura: event.target.value });
+  }
+
+setMasculino(event) {
+    this.setState({ masculino: event.target.value });
+  }
+
+setMaior(event) {
+    this.setState({ maior: event.target.value });
   }
 
   calcular() {
@@ -79,7 +89,7 @@ class Imc extends React.Component {
             <Typography component="h1" variant="h5">
               Calculadora de IMC
             </Typography>
-            <TextField
+            <Switch
               onChange={this.setPeso}
               margin="normal"
               required
