@@ -56,20 +56,16 @@ setMaior(event) {
     let imc = this.calcular();
     if (imc) {
       resultado += imc.toFixed(2) + " - ";
-      if (imc < 18.5) {
-        resultado += "Abaixo do peso";
-      } else if (imc < 24.9) {
-        resultado += "Peso normal";
-      } else if (imc < 29.9) {
-        resultado += "Acima do peso (sobrepeso)";
-      } else if (imc < 34.9) {
-        resultado += "Obesidade I";
-      } else if (imc < 39.9) {
-        resultado += "Obesidade II";
-      } else {
-        resultado += "Obesidade III";
+      let masculino = this.state.masculino;
+      let maior = this.state.maior;
+      if (maior) {
+        resultado += this.tipo(imc, 18.5, 24.9, 29.9, 34.9, 39.9);
       }
-    }
+      else if (masculino) {
+      resultado += this.tipo(imc, 17.8, 26.4, 30.6, 34.9, 39.9);
+      } else {
+        resultado += this.tipo(imc, 16.9, 25.9, 30.7, 34.9, 39.9);
+      }
     return resultado;
   }
 
@@ -89,7 +85,7 @@ setMaior(event) {
             <Typography component="h1" variant="h5">
               Calculadora de IMC
             </Typography>
-            <Switch
+            <Typography
               onChange={this.setPeso}
               margin="normal"
               required
